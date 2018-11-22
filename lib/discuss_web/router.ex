@@ -13,16 +13,17 @@ defmodule DiscussWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", DiscussWeb do
+  scope "/topics", DiscussWeb do
     pipe_through :browser # Use the default browser stack
 
-    # get "/topics/new", TopicController, :new
-    # post "/topic", TopicController, :create
-    # get "/topics", TopicController, :index
-    # get "/topics/:id/edit", TopicController, :edit
-    # put "/topics/:id", TopicController, :update
-    # delete "/topics/:id", TopicController, :delete
-    resources "/topics", TopicController
+    resources "/", TopicController
+  end
+
+  scope "/auth", DiscussWeb do
+    pipe_through :browser # Use the default browser stack
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
