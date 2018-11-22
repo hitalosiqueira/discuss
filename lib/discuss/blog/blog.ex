@@ -10,6 +10,13 @@ defmodule Discuss.Blog do
     |> Repo.insert()
   end
 
+  def create_topic(user, topic_params) do
+    user
+    |> Ecto.build_assoc(:topics)
+    |> Topic.changeset(topic_params)
+    |> Repo.insert()
+  end
+
   def list_topics do
     Repo.all(Topic)
   end
