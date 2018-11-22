@@ -11,6 +11,8 @@ defmodule Discuss.Auth do
 
   def get_user!(id), do: Repo.get!(User, id)
 
+  def get_user(id), do: Repo.get(User, id)
+
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
